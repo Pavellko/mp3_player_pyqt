@@ -33,8 +33,12 @@ def play_song():
     next_song(ind)
     
 def next_song(ind):
-    print(ui.listWidget.item(ind+1).text())
-    pass
+    ns = ui.listWidget.item(ind+1).text()
+    print(ns)
+    mixer.music.queue(ns)
+    ind+=1
+    if type(ind)==int(): next_song(ind)
+
         
     
 def open_folder():
