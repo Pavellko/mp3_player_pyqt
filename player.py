@@ -40,15 +40,16 @@ def pause():
     global flag
     if flag:
         mixer.music.pause()
+        ui.pushButton_4.setStyleSheet("background-color: red")
         flag = False
     else:
         mixer.music.unpause()
+        ui.pushButton_4.setStyleSheet("background-color: None")
         flag = True
         
 def stop():
     mixer.music.stop()
     
-
 ui.pushButton.clicked.connect(open_file)
 ui.pushButton_3.clicked.connect(open_folder)
 ui.pushButton_2.clicked.connect(play_song)
