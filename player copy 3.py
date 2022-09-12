@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pygame
 import os
+import time
 
 app = QApplication([])
 ui = uic.loadUi("inter.ui")
@@ -14,8 +15,10 @@ ui.show()
 pygame.init()
 
 flag = False
+list_song = []
 
 def open_file():
+    global list_song
     file_name = QFileDialog()
     file_name.setFileMode(QFileDialog.ExistingFiles)
     names = file_name.getOpenFileNames()
@@ -23,42 +26,33 @@ def open_file():
     ui.listWidget.addItems(song)
 
 def play_song():
-    song_end = False
-    global flag
+    global flag, list_song
     path = ui.listWidget.currentItem().text()
     ind = ui.listWidget.currentRow()
+    print(path)
     print(ind)
     pygame.mixer.init()
     pygame.mixer.music.load(path)
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(1)
     ui.pushButton_4.setStyleSheet("background-color: None")
     flag = True
-    MUSIC_END = pygame.USEREVENT+1
-    pygame.mixer.music.set_endevent(MUSIC_END)
-    for event in pygame.event.get():
-        if event.type == MUSIC_END:
-            song_end = True
-    if song_end:
-        print('next')
-        next_song(ind)
+    
+    
+    for num, song in enumerate(list_song):
+        if num == ind:        
+            print(num, '-', song)
+        pygame.mixer.music.queue(list_song[num])
 
-def next_song(ind):
-    song_end = False
-    ns = ui.listWidget.item(ind+1).text()
-    pygame.mixer.music.load(ns)
-    pygame.mixer.music.play()
-    MUSIC_END = pygame.USEREVENT+1
-    pygame.mixer.music.set_endevent(MUSIC_END)
-    for event in pygame.event.get():
-        if event.type == MUSIC_END:
-            song_end = True
-    if song_end:
-        print('next')
-        next_song(ind)
-     
-     
-          
+
+# def next_song(ind):
+#     ind += 1
+#     ns = ui.listWidget.item(ind).text()
+#     pygame.mixer.music.load(ns)
+#     pygame.mixer.music.play()
+
+         
 def open_folder():
+    global list_song
     directory = QFileDialog.getExistingDirectory()
     print(directory)
     if directory:
@@ -66,6 +60,7 @@ def open_folder():
             for file in filenames:
                 if file.endswith('mp3'):
                     ui.listWidget.addItem(os.path.join(dirpath, file))
+                    list_song.append(os.path.join(dirpath, file))
 
              
 def pause():
