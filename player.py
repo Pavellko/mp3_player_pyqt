@@ -26,6 +26,7 @@ def play_song():
     mixer.init()
     mixer.music.load(path)
     mixer.music.play()
+    ui.pushButton_4.setStyleSheet("background-color: None")
     flag = True
     
 def open_folder():
