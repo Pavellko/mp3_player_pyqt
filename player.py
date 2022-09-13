@@ -2,7 +2,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pygame
-import os
+import os, sys
 
 app = QApplication([])
 ui = uic.loadUi("inter.ui")
@@ -41,14 +41,13 @@ def play_song():
         pygame.mixer.music.play()     
         running = True
         while running:
-            for event in pygame.event.get():        
+            for event in pygame.event.get():     
                 if event.type == pygame.USEREVENT:   
                     if len ( playlist ) - i  > 1:
                         i +=1                        
-                        pygame.mixer.music.queue ( playlist[i] )                        
+                        pygame.mixer.music.queue ( playlist[i] )
     else:
         pygame.mixer.music.play()
-        # ui.listWidget.setCurrentItem( ui.listWidget.item(i) ) 
 
 def open_folder():
     directory = QFileDialog.getExistingDirectory()
@@ -78,4 +77,5 @@ ui.pushButton_2.clicked.connect(play_song)
 ui.pushButton_4.clicked.connect(pause)
 ui.pushButton_5.clicked.connect(stop)
 
-app.exec_()
+
+sys.exit(app.exec_())
