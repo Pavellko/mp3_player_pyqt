@@ -4,18 +4,6 @@ from PyQt5.QtGui import *
 import pygame
 import os, sys
 
-app = QApplication([])
-ui = uic.loadUi("inter.ui")
-
-ui.setWindowTitle('Mp3 Player')
-ui.setFixedSize(350, 500)
-ui.show()
-
-pygame.init()
-
-flag = False
-list_song = []
-
 def open_file():
     file_name = QFileDialog()
     file_name.setFileMode(QFileDialog.ExistingFiles)
@@ -71,11 +59,21 @@ def pause():
 def stop():
     pygame.mixer.music.stop()
     
+    
+app = QApplication([])
+ui = uic.loadUi("inter.ui")
+ui.setWindowTitle('Mp3 Player')
+ui.setFixedSize(350, 500)
+ui.show()
+
+pygame.init()
+flag = False
+list_song = []    
+    
 ui.pushButton.clicked.connect(open_file)
 ui.pushButton_3.clicked.connect(open_folder)
 ui.pushButton_2.clicked.connect(play_song)
 ui.pushButton_4.clicked.connect(pause)
 ui.pushButton_5.clicked.connect(stop)
-
 
 sys.exit(app.exec_())
