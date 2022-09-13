@@ -26,7 +26,7 @@ def play_song():
         i += 1        
         pygame.mixer.music.queue ( playlist[i] )   
         pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
-        pygame.mixer.music.play()     
+        pygame.mixer.music.play() 
         running = True
         while running:
             for event in pygame.event.get():     
@@ -57,10 +57,12 @@ def pause():
         flag = True
         
 def stop():
-    pygame.mixer.music.stop()
+    pygame.mixer.music.stop() 
     
+def close_app():
+    exit()     
     
-app = QApplication([])
+app = QApplication(sys.argv)
 ui = uic.loadUi("inter.ui")
 ui.setWindowTitle('Mp3 Player')
 ui.setFixedSize(350, 500)
@@ -76,4 +78,5 @@ ui.pushButton_2.clicked.connect(play_song)
 ui.pushButton_4.clicked.connect(pause)
 ui.pushButton_5.clicked.connect(stop)
 
+app.lastWindowClosed.connect(close_app)
 sys.exit(app.exec_())
