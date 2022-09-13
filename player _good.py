@@ -30,55 +30,37 @@ def play_song():
     flag = True
     playlist = []
     ind = ui.listWidget.currentRow()
-    zz = ui.listWidget.count()      
-    
+    zz = ui.listWidget.count()     
     for i in range(ind, zz):
-        print(ui.listWidget.item(i).text())
         playlist.append(ui.listWidget.item(i).text())
-        
-    print(playlist)
-    
-    # pygame.mixer.music.load ( playlist.pop() )  
-    # pygame.mixer.music.queue ( playlist.pop() ) 
-    # pygame.mixer.music.set_endevent ( pygame.USEREVENT )  
-    # pygame.mixer.music.play()         
-
-    # running = True
-    # while running:
-    #     for event in pygame.event.get():
-    #         if event.type == pygame.USEREVENT:   
-    #             if len ( playlist ) > 0:     
-    #                 pygame.mixer.music.queue ( playlist.pop() ) 
     i = 0
-    pygame.mixer.music.load ( playlist[i] )
     
+    pygame.mixer.music.load ( playlist[i] )    
     if len(playlist)!=1:
-        i += 1
-        pygame.mixer.music.queue ( playlist[i] )
-
+        i += 1        
+        pygame.mixer.music.queue ( playlist[i] )   
         pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
         pygame.mixer.music.play()     
-
         running = True
         while running:
             for event in pygame.event.get():        
                 if event.type == pygame.USEREVENT:   
                     if len ( playlist ) - i > 1 > 0:
-                        i +=1 
+                        i +=1                        
                         pygame.mixer.music.queue ( playlist[i] )
-    else:
-        pygame.mixer.music.play() 
 
+                        
+    else:
+        pygame.mixer.music.play()
+        # ui.listWidget.setCurrentItem( ui.listWidget.item(i) ) 
 
 def open_folder():
     directory = QFileDialog.getExistingDirectory()
-    print(directory)
     if directory:
         for dirpath, dirnames, filenames in os.walk(directory):
             for file in filenames:
                 if file.endswith('mp3'):
                     ui.listWidget.addItem(os.path.join(dirpath, file))
-
              
 def pause():
     global flag
