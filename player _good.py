@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pygame
 import os
-import time
 
 app = QApplication([])
 ui = uic.loadUi("inter.ui")
@@ -33,10 +32,9 @@ def play_song():
     zz = ui.listWidget.count()     
     for i in range(ind, zz):
         playlist.append(ui.listWidget.item(i).text())
-    i = 0
-    
+    i = 0    
     pygame.mixer.music.load ( playlist[i] )    
-    if len(playlist)!=1:
+    if len(playlist) != 1:
         i += 1        
         pygame.mixer.music.queue ( playlist[i] )   
         pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
@@ -45,11 +43,9 @@ def play_song():
         while running:
             for event in pygame.event.get():        
                 if event.type == pygame.USEREVENT:   
-                    if len ( playlist ) - i > 1 > 0:
+                    if len ( playlist ) - i  > 1:
                         i +=1                        
-                        pygame.mixer.music.queue ( playlist[i] )
-
-                        
+                        pygame.mixer.music.queue ( playlist[i] )                        
     else:
         pygame.mixer.music.play()
         # ui.listWidget.setCurrentItem( ui.listWidget.item(i) ) 
