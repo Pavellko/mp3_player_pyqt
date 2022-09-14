@@ -21,7 +21,6 @@ def play_song():
     for i in range(ind, zz):
         playlist.append(ui.listWidget.item(i).text())
     i = 0 
-    print(i) 
     pygame.mixer.music.load ( playlist[i] )    
     if len(playlist) != 1:
         i += 1 
