@@ -64,14 +64,16 @@ def close_app():
 
 def volum_up():
     global volume
-    if volume != 1.0 :
+    if volume < 0.9 :
         volume += 0.1
+        ui.label_2.setText(str(round(volume*100)) +'%')
         pygame.mixer.music.set_volume(volume)     
 
 def volum_down():
     global volume
-    if volume != 0 :
+    if volume > 0.1 :
         volume -= 0.1
+        ui.label_2.setText(str(round(volume*100)) +'%')
         pygame.mixer.music.set_volume(volume)          
     
 app = QApplication(sys.argv)
