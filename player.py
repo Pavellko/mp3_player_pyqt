@@ -20,19 +20,21 @@ def play_song():
     zz = ui.listWidget.count()     
     for i in range(ind, zz):
         playlist.append(ui.listWidget.item(i).text())
-    i = 0    
+    i = 0 
+    print(i) 
     pygame.mixer.music.load ( playlist[i] )    
     if len(playlist) != 1:
-        i += 1        
+        i += 1 
         pygame.mixer.music.queue ( playlist[i] )   
         pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
         pygame.mixer.music.play() 
         running = True
         while running:
-            for event in pygame.event.get():     
-                if event.type == pygame.USEREVENT:   
-                    if len ( playlist ) - i  > 1:
-                        i +=1                        
+            for event in pygame.event.get():                    
+                if event.type == pygame.USEREVENT:
+                    ui.listWidget.setCurrentItem( ui.listWidget.item(i) )                       
+                    if len ( playlist ) - i  > 1:                        
+                        i +=1                    
                         pygame.mixer.music.queue ( playlist[i] )
     else:
         pygame.mixer.music.play()
