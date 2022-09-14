@@ -93,7 +93,7 @@ ui.pushButton_3.clicked.connect(open_folder)
 ui.pushButton_2.clicked.connect(play_song)
 ui.pushButton_4.clicked.connect(pause)
 ui.pushButton_5.clicked.connect(stop)
-
+ui.listWidget.itemDoubleClicked.connect(play_song)
 ui.pushButton_6.clicked.connect(volum_up)
 ui.pushButton_7.clicked.connect(volum_down)
 
