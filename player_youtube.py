@@ -95,9 +95,11 @@ def get_youtube():
         os.remove(f'{titl}.mp4')
         ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
         ui.pushButton_8.setText('YouTube Get Music')
+        ui.lineEdit.setText('Done. Give next link...')
     else:
         ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
         ui.pushButton_8.setText('YouTube Get Music')
+        ui.lineEdit.setText('Done. Give next link...')
  
 def get_youtube_thread():
     threading.Thread(target = get_youtube ).start()
