@@ -2,17 +2,18 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pygame
-import os, sys
+import os, sys, os.path
 
 import pafy
 from youtube_dl import YoutubeDL
 from mhyt import yt_download
+import ffmpy
+from pytube import YouTube
 
 def open_file():
     file_name = QFileDialog()
     file_name.setFileMode(QFileDialog.ExistingFiles)
     names = file_name.getOpenFileNames()
-    song = names[0]
     ui.listWidget.addItems(song)
 
 def play_song():
@@ -84,33 +85,17 @@ def volum_down():
 def get_youtube():
     global link_youtube
     link_youtube = ui.lineEdit.text()
-    print(link_youtube)
-    ######
-    # video = pafy.new(link_youtube)
-    # bestaudio = video.getbestaudio()
-    # bestaudio.download(f'{video.title}.mp3')
-    ######
-    # ydl_opts = { 'format': 'm4a/bestaudio/best', 'postprocessors': [{  'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', }]}
-    # with YoutubeDL() as ydl:
-    #     ydl.download([link_youtube])
-    #######
-    # yt_download(link_youtube, f'{video.title}.mp3' , ismusic=True, codec = "mp3")
-    #######
-    # video_info = YoutubeDL().extract_info( url = link_youtube, download=False )
-    # filename = f"{video_info['title']}.mp3"
-    # options={
-    #     'format':'bestaudio/best',
-    #     'keepvideo':False,
-    #     'outtmpl':filename,
-    #      }
-
-    # with YoutubeDL(options) as ydl:
-    #     ydl.download([video_info['webpage_url']])
-    ########
-    
-    
-    
-        
+    yt = YouTube(link_youtube)
+    videos = yt.streams.get_audio_only()
+    if not os.path.isfile(f'{videos.title}.mp3'):
+        videos.download()
+        ff = ffmpy.FFmpeg( inputs={ f'{videos.title}.mp4' : None}, outputs={   f'{videos.title}.mp3'  : None} )
+        ff.run()
+        os.remove(f'{videos.title}.mp4')
+        ui.listWidget.addItems(  [f'{os.getcwd()}\{videos.title}.mp3']  )
+    else:
+        ui.listWidget.addItems(  [f'{os.getcwd()}\{videos.title}.mp3']  )
+     
     
 app = QApplication(sys.argv)
 ui = uic.loadUi("inter.ui")
