@@ -2,11 +2,9 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pygame
-import os, sys, os.path
+import os, sys, os.path, re
+import threading
 
-import pafy
-from youtube_dl import YoutubeDL
-from mhyt import yt_download
 import ffmpy
 from pytube import YouTube
 
@@ -14,6 +12,7 @@ def open_file():
     file_name = QFileDialog()
     file_name.setFileMode(QFileDialog.ExistingFiles)
     names = file_name.getOpenFileNames()
+    song = names[0]
     ui.listWidget.addItems(song)
 
 def play_song():
@@ -85,17 +84,24 @@ def volum_down():
 def get_youtube():
     global link_youtube
     link_youtube = ui.lineEdit.text()
+    ui.pushButton_8.setText('Loading...')
     yt = YouTube(link_youtube)
     videos = yt.streams.get_audio_only()
-    if not os.path.isfile(f'{videos.title}.mp3'):
+    titl = re.sub(r"[\#%!@*/.:']", "", videos.title)
+    if not os.path.isfile(f'{titl}.mp3'):
         videos.download()
-        ff = ffmpy.FFmpeg( inputs={ f'{videos.title}.mp4' : None}, outputs={   f'{videos.title}.mp3'  : None} )
+        ff = ffmpy.FFmpeg( inputs={ f'{titl}.mp4' : None}, outputs={   f'{titl}.mp3'  : None} )
         ff.run()
-        os.remove(f'{videos.title}.mp4')
-        ui.listWidget.addItems(  [f'{os.getcwd()}\{videos.title}.mp3']  )
+        os.remove(f'{titl}.mp4')
+        ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
+        ui.pushButton_8.setText('YouTube Get Music')
     else:
-        ui.listWidget.addItems(  [f'{os.getcwd()}\{videos.title}.mp3']  )
-     
+        ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
+        ui.pushButton_8.setText('YouTube Get Music')
+ 
+def get_youtube_thread():
+    threading.Thread(target = get_youtube ).start()
+         
     
 app = QApplication(sys.argv)
 ui = uic.loadUi("inter.ui")
@@ -118,7 +124,7 @@ ui.pushButton_5.clicked.connect(stop)
 ui.listWidget.itemDoubleClicked.connect(play_song)
 ui.pushButton_6.clicked.connect(volum_up)
 ui.pushButton_7.clicked.connect(volum_down)
-ui.pushButton_8.clicked.connect(get_youtube)
+ui.pushButton_8.clicked.connect(get_youtube_thread)
 
 app.lastWindowClosed.connect(close_app)
 sys.exit(app.exec_())
