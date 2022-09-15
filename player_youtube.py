@@ -88,16 +88,16 @@ def get_youtube():
     yt = YouTube(link_youtube)
     videos = yt.streams.get_audio_only()
     titl = re.sub(r"[\#%!@*/.:']", "", videos.title)
-    if not os.path.isfile(f'{titl}.mp3'):
-        videos.download()
-        ff = ffmpy.FFmpeg( inputs={ f'{titl}.mp4' : None}, outputs={   f'{titl}.mp3'  : None} )
+    if not os.path.isfile(f'Music\{titl}.mp3'):
+        videos.download('Music')
+        ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
         ff.run()
-        os.remove(f'{titl}.mp4')
-        ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
+        os.remove(f'Music\{titl}.mp4')
+        ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
         ui.pushButton_8.setText('YouTube Get Music')
         ui.lineEdit.setText('Done. Give next link...')
     else:
-        ui.listWidget.addItems(  [f'{os.getcwd()}\{titl}.mp3']  )
+        ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
         ui.pushButton_8.setText('YouTube Get Music')
         ui.lineEdit.setText('Done. Give next link...')
  
