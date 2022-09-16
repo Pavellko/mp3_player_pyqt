@@ -13,34 +13,41 @@ def open_file():
     file_name.setFileMode(QFileDialog.ExistingFiles)
     names = file_name.getOpenFileNames()
     song = names[0]
-    ui.listWidget.addItems(song)
+    good_song = []
+    for i in song:
+        if i.endswith('mp3'):
+            good_song.append(i)
+    ui.listWidget.addItems(good_song)
 
 def play_song():
-    global flag
-    ui.pushButton_4.setStyleSheet("background-color: None")
-    flag = True
-    playlist = []
-    ind = ui.listWidget.currentRow()
-    zz = ui.listWidget.count()     
-    for i in range(ind, zz):
-        playlist.append(ui.listWidget.item(i).text())
-    i = 0 
-    pygame.mixer.music.load ( playlist[i] )    
-    if len(playlist) != 1:
-        i += 1 
-        pygame.mixer.music.queue ( playlist[i] )   
-        pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
-        pygame.mixer.music.play() 
-        running = True
-        while running:
-            for event in pygame.event.get():                    
-                if event.type == pygame.USEREVENT:
-                    ui.listWidget.setCurrentItem( ui.listWidget.item(i) )                       
-                    if len ( playlist ) - i  > 1:                        
-                        i +=1                    
-                        pygame.mixer.music.queue ( playlist[i] )
-    else:
-        pygame.mixer.music.play()
+    try:
+        global flag
+        ui.pushButton_4.setStyleSheet("background-color: None")
+        flag = True
+        playlist = []
+        ind = ui.listWidget.currentRow()
+        zz = ui.listWidget.count()     
+        for i in range(ind, zz):
+            playlist.append(ui.listWidget.item(i).text())
+        i = 0 
+        pygame.mixer.music.load ( playlist[i] )    
+        if len(playlist) != 1:
+            i += 1 
+            pygame.mixer.music.queue ( playlist[i] )   
+            pygame.mixer.music.set_endevent ( pygame.USEREVENT ) 
+            pygame.mixer.music.play() 
+            running = True
+            while running:
+                for event in pygame.event.get():                    
+                    if event.type == pygame.USEREVENT:
+                        ui.listWidget.setCurrentItem( ui.listWidget.item(i) )                       
+                        if len ( playlist ) - i  > 1:                        
+                            i +=1                    
+                            pygame.mixer.music.queue ( playlist[i] )
+        else:
+            pygame.mixer.music.play()
+    except:
+        pass
 
 def open_folder():
     directory = QFileDialog.getExistingDirectory()
@@ -62,6 +69,7 @@ def pause():
         flag = True
         
 def stop():
+    ui.pushButton_4.setStyleSheet("background-color: None")
     pygame.mixer.music.stop() 
     
 def close_app():
