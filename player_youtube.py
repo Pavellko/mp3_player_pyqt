@@ -1,12 +1,12 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from pytube import YouTube
 import pygame
 import os, sys, os.path, re
 import threading
-
 import ffmpy
-from pytube import YouTube
+
 
 def open_file():
     file_name = QFileDialog()
