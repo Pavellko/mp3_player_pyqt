@@ -92,22 +92,33 @@ def volum_down():
 def get_youtube():
     global link_youtube
     link_youtube = ui.lineEdit.text()
-    ui.pushButton_8.setText('Loading...')
-    yt = YouTube(link_youtube)
-    videos = yt.streams.get_audio_only()
-    titl = re.sub(r"[\#%!@*/.:']", "", videos.title)
-    if not os.path.isfile(f'Music\{titl}.mp3'):
-        videos.download('Music')
-        ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
-        ff.run()
-        os.remove(f'Music\{titl}.mp4')
-        ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
-        ui.pushButton_8.setText('YouTube Get Music')
-        ui.lineEdit.setText('Done. Give next link...')
+    if link_youtube != '':
+        try:            
+            yt = YouTube(link_youtube)
+            videos = yt.streams.get_audio_only()
+            titl = videos.title
+            for i in titl:
+                if not (i.isalpha() or  i.isalnum()):    
+                    if i == ' ':
+                        titl = titl.replace(i, '-')
+                    titl = titl.replace(i, '')
+            if not os.path.isfile(f'Music\{titl}.mp3'):
+                videos.download('Music')
+                ui.pushButton_8.setText('Loading...')
+                ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
+                ff.run()
+                os.remove(f'Music\{titl}.mp4')
+                ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
+                ui.pushButton_8.setText('YouTube Get Music')
+                ui.lineEdit.setText('Done. Give next link...')
+            else:
+                ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
+                ui.pushButton_8.setText('YouTube Get Music')
+                ui.lineEdit.setText('Done. Give next link...')
+        except:
+            pass
     else:
-        ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
-        ui.pushButton_8.setText('YouTube Get Music')
-        ui.lineEdit.setText('Done. Give next link...')
+        pass
  
 def get_youtube_thread():
     threading.Thread(target = get_youtube ).start()
