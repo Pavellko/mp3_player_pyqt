@@ -108,7 +108,7 @@ def get_youtube_thread():
 app = QApplication(sys.argv)
 ui = uic.loadUi("inter.ui")
 ui.setWindowTitle('Mp3 Player')
-ui.setFixedSize(350, 544)
+# ui.setFixedSize(350, 544)
 ui.show()
 
 pygame.init()
