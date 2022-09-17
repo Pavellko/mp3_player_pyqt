@@ -95,15 +95,12 @@ def get_youtube():
     if link_youtube != '':
         try:            
             yt = YouTube(link_youtube)
-            videos = yt.streams.get_audio_only()
-            titl = videos.title
-            print(videos.title)
-            
+            videos = yt.streams.get_audio_only()           
             for i in titl:
                 if not (i.isalpha() or  i.isalnum()):    
-                    if i == ' ':
-                        titl = titl.replace(i, '-')
-                    titl = titl.replace(i, '')
+                    # if i == ' ':
+                    #     titl = titl.replace(i, '-')
+                    titl = titl.replace(i, '-')
             print(titl)
             if not os.path.isfile(f'Music\{titl}.mp3'):
                 videos.download('Music')
