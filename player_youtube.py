@@ -25,7 +25,7 @@ def play_song():
         ui.pushButton_4.setStyleSheet("background-color: None")
         flag = True
         playlist = []
-        ind = ui.listWidget.currentRow() + x
+        ind = ui.listWidget.currentRow()
         zz = ui.listWidget.count()     
         for i in range(ind, zz):
             playlist.append(ui.listWidget.item(i).text())
