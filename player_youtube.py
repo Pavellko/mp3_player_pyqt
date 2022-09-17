@@ -25,7 +25,7 @@ def play_song():
         ui.pushButton_4.setStyleSheet("background-color: None")
         flag = True
         playlist = []
-        ind = ui.listWidget.currentRow()
+        ind = ui.listWidget.currentRow() + x
         zz = ui.listWidget.count()     
         for i in range(ind, zz):
             playlist.append(ui.listWidget.item(i).text())
@@ -145,6 +145,7 @@ ui.listWidget.itemDoubleClicked.connect(play_song)
 ui.pushButton_6.clicked.connect(volum_up)
 ui.pushButton_7.clicked.connect(volum_down)
 ui.pushButton_8.clicked.connect(get_youtube_thread)
+
 
 app.lastWindowClosed.connect(close_app)
 sys.exit(app.exec_())
