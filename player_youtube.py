@@ -91,6 +91,7 @@ def volum_down():
     
 def get_youtube():
     global link_youtube
+    ui.pushButton_8.setText('Wait...')
     def add_to():
         ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
         ui.pushButton_8.setText('YouTube Get Music')
@@ -103,18 +104,18 @@ def get_youtube():
         for i in titl:
             if not (i.isalpha() or  i.isalnum()):    
                 titl = titl.replace(i, '-')
-        # try:
-        if not os.path.isfile(f'Music\{titl}.mp3'):
-            videos.download('Music', filename = f'{titl}.mp4')
-            ui.pushButton_8.setText('Loading...')
-            ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
-            ff.run()
-            os.remove(f'Music\{titl}.mp4')
-            add_to()
-        else:
-            add_to()
-        # except:
-        #     pass
+        try:
+            if not os.path.isfile(f'Music\{titl}.mp3'):
+                videos.download('Music', filename = f'{titl}.mp4')
+                ui.pushButton_8.setText('Loading...')
+                ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
+                ff.run()
+                os.remove(f'Music\{titl}.mp4')
+                add_to()
+            else:
+                add_to()
+        except:
+            pass
     else:
         pass
  
