@@ -103,19 +103,18 @@ def get_youtube():
         for i in titl:
             if not (i.isalpha() or  i.isalnum()):    
                 titl = titl.replace(i, '-')
-        try:
-            if not os.path.isfile(f'Music\{titl}.mp3'):
-                videos.download('Music')
-                os.rename(f'Music\{videos.title}.mp4', f'Music\{titl}.mp4')
-                ui.pushButton_8.setText('Loading...')
-                ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
-                ff.run()
-                os.remove(f'Music\{titl}.mp4')
-                add_to()
-            else:
-                add_to()
-        except:
-            pass
+        # try:
+        if not os.path.isfile(f'Music\{titl}.mp3'):
+            videos.download('Music', filename = f'{titl}.mp4')
+            ui.pushButton_8.setText('Loading...')
+            ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
+            ff.run()
+            os.remove(f'Music\{titl}.mp4')
+            add_to()
+        else:
+            add_to()
+        # except:
+        #     pass
     else:
         pass
  
