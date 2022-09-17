@@ -97,13 +97,17 @@ def get_youtube():
             yt = YouTube(link_youtube)
             videos = yt.streams.get_audio_only()
             titl = videos.title
+            print(videos.title)
+            
             for i in titl:
                 if not (i.isalpha() or  i.isalnum()):    
                     if i == ' ':
                         titl = titl.replace(i, '-')
                     titl = titl.replace(i, '')
+            print(titl)
             if not os.path.isfile(f'Music\{titl}.mp3'):
                 videos.download('Music')
+                os.rename(f'Music\{videos.title}.mp4', f'Music\{titl}.mp4')
                 ui.pushButton_8.setText('Loading...')
                 ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
                 ff.run()
