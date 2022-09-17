@@ -91,17 +91,19 @@ def volum_down():
     
 def get_youtube():
     global link_youtube
+    def add_to():
+        ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
+        ui.pushButton_8.setText('YouTube Get Music')
+        ui.lineEdit.setText('Done. Give next link...')
     link_youtube = ui.lineEdit.text()
-    if link_youtube != '':
-        try:            
-            yt = YouTube(link_youtube)
-            videos = yt.streams.get_audio_only()           
-            for i in titl:
-                if not (i.isalpha() or  i.isalnum()):    
-                    # if i == ' ':
-                    #     titl = titl.replace(i, '-')
-                    titl = titl.replace(i, '-')
-            print(titl)
+    if link_youtube != '':                   
+        yt = YouTube(link_youtube)
+        videos = yt.streams.get_audio_only()  
+        titl =  videos.title        
+        for i in titl:
+            if not (i.isalpha() or  i.isalnum()):    
+                titl = titl.replace(i, '-')
+        try:
             if not os.path.isfile(f'Music\{titl}.mp3'):
                 videos.download('Music')
                 os.rename(f'Music\{videos.title}.mp4', f'Music\{titl}.mp4')
@@ -109,13 +111,9 @@ def get_youtube():
                 ff = ffmpy.FFmpeg( inputs={ f'Music\{titl}.mp4' : None}, outputs={   f'Music\{titl}.mp3'  : None} )
                 ff.run()
                 os.remove(f'Music\{titl}.mp4')
-                ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
-                ui.pushButton_8.setText('YouTube Get Music')
-                ui.lineEdit.setText('Done. Give next link...')
+                add_to()
             else:
-                ui.listWidget.addItems(  [f'{os.getcwd()}\Music\{titl}.mp3']  )
-                ui.pushButton_8.setText('YouTube Get Music')
-                ui.lineEdit.setText('Done. Give next link...')
+                add_to()
         except:
             pass
     else:
