@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from pytube import YouTube
 import pygame
-import os, sys, os.path, re
+import os, sys, os.path
 import threading
 import ffmpy
 
