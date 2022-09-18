@@ -44,6 +44,7 @@ def play_song():
                         if len ( playlist ) - i  > 1:                        
                             i +=1                    
                             pygame.mixer.music.queue ( playlist[i] )
+                            
         else:
             pygame.mixer.music.play()
     except:
