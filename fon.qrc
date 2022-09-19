@@ -1,6 +1,8 @@
 <RCC>
   <qresource prefix="images">
+    <file>fon3.png</file>
     <file>fon2.png</file>
     <file>knopka.png</file>
+    <file>knopka_mal.png</file>
   </qresource>
 </RCC>
