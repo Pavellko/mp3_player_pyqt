@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(images/fon3.png);</string>
+    <string notr="true">background-image: url(:/images/images/fon3.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -59,7 +59,7 @@ border-color: rgb(85, 0, 255);</string>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton{
 font: 57 14pt &quot;Bank Gothic&quot;;
-background-image: url(images/knopka.png);
+background-image: url(:/images/images/knopka.png);
 color: rgb(236, 230, 218);
 border: none;
 }
@@ -100,7 +100,7 @@ QPushButton#pushButton:pressed{
     <string notr="true">QPushButton#pushButton_2{
 color: rgb(236, 230, 218);
 font: 10pt &quot;Alte DIN 1451 Mittelschrift&quot;;
-background-image: url(images/knopka.png);
+background-image: url(:/images/images/knopka.png);
 border: none;
 }
 
@@ -138,7 +138,7 @@ QPushButton#pushButton_2:pressed{
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton_3{
-background-image: url(images/knopka.png);
+background-image: url(:/images/images/knopka.png);
 font: 10pt &quot;Alte DIN 1451 Mittelschrift&quot;;
 color: rgb(236, 230, 218);
 border: none;
@@ -169,16 +169,16 @@ QPushButton#pushButton_3:pressed{
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton_4{
-background-image: url(images/pause.png);
+background-image: url(:/images/images/pause.png);
 border: none;
 }
 
 QPushButton#pushButton_4:hover{
-background-image: url(images/pause_hover.png);
+background-image: url(:/images/images/pause_hover.png);
 }
 
 QPushButton#pushButton_4:pressed{
-background-image: url(images/pause_pressed.png);
+background-image: url(:/images/images/pause_pressed.png);
 }</string>
    </property>
    <property name="text">
@@ -196,16 +196,16 @@ background-image: url(images/pause_pressed.png);
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton_5{
-background-image: url(images/stop.png);
+background-image: url(:/images/images/stop.png);
 border: none;
 }
 
 QPushButton#pushButton_5:hover{
-background-image: url(images/stop_hover.png);
+background-image: url(:/images/images/stop_hover.png);
 }
 
 QPushButton#pushButton_5:pressed{
-background-image: url(images/stop_pressed.png);
+background-image: url(:/images/images/stop_pressed.png);
 }</string>
    </property>
    <property name="text">
@@ -223,16 +223,16 @@ background-image: url(images/stop_pressed.png);
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton_6{
-background-image: url(images/previus.png);
+background-image: url(:/images/images/previus.png);
 border: none;
 }
 
 QPushButton#pushButton_6:hover{
-background-image: url(images/previus_hover.png);
+background-image: url(:/images/images/previus_hover.png);
 }
 
 QPushButton#pushButton_6:pressed{
-background-image: url(images/previus_pressed.png);
+background-image: url(:/images/images/previus_pressed.png);
 }</string>
    </property>
    <property name="text">
@@ -250,16 +250,16 @@ background-image: url(images/previus_pressed.png);
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton_7{
-background-image: url(images/forward.png);
+background-image: url(:/images/images/forward.png);
 border: none;
 }
 
 QPushButton#pushButton_7:hover{
-background-image: url(images/forward_hover.png);
+background-image: url(:/images/images/forward_hover.png);
 }
 
 QPushButton#pushButton_7:pressed{
-background-image: url(images/forward_pressed.png);
+background-image: url(:/images/images/forward_pressed.png);
 }</string>
    </property>
    <property name="text">
@@ -317,7 +317,7 @@ color: rgb(236, 230, 218);</string>
     <string notr="true">QPushButton#pushButton_8{
 color: rgb(236, 230, 218);
 font: 10pt &quot;Alte DIN 1451 Mittelschrift&quot;;
-background-image: url(images/knopka_youtube.png);
+background-image: url(:/images/images/knopka_youtube.png);
 border: none;
 }
 

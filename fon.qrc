@@ -1,8 +1,20 @@
 <RCC>
   <qresource prefix="images">
-    <file>fon3.png</file>
-    <file>fon2.png</file>
-    <file>knopka.png</file>
-    <file>knopka_mal.png</file>
+    <file>images/fon3.png</file>
+    <file>images/forward.png</file>
+    <file>images/forward_hover.png</file>
+    <file>images/forward_pressed.png</file>
+    <file>images/knopka.png</file>
+    <file>images/knopka_mal.png</file>
+    <file>images/knopka_youtube.png</file>
+    <file>images/pause.png</file>
+    <file>images/pause_hover.png</file>
+    <file>images/pause_pressed.png</file>
+    <file>images/previus.png</file>
+    <file>images/previus_hover.png</file>
+    <file>images/previus_pressed.png</file>
+    <file>images/stop.png</file>
+    <file>images/stop_hover.png</file>
+    <file>images/stop_pressed.png</file>
   </qresource>
 </RCC>
