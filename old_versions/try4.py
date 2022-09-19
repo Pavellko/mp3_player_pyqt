@@ -43,12 +43,16 @@ class MyApp(QWidget):
         self.player.setMuted(not self.player.isMuted())
 
     def playAudioFile(self):
-        full_file_path = os.path.join(os.getcwd(), 'Zombie.mp3')
-        url = QUrl.fromLocalFile(full_file_path)
-        content = QMediaContent(url)
-
-        self.player.setMedia(content)
-        self.player.play()
+        for i in range(4):
+            import glob
+            names = glob.glob(r'C:\Users\pavel\Music\Test\*.mp3')
+        print(names)
+        for ii in names:
+            print(ii)            
+            url = QUrl.fromLocalFile(ii)
+            content = QMediaContent(url)
+            self.player.setMedia(content)
+            self.player.play()
 
 if __name__ == '__main__':
     # don't auto scale when drag app to a different monitor.
