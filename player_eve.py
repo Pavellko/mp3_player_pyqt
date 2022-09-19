@@ -24,7 +24,7 @@ class App(QWidget):
         self.start()                            
                                      
     def start(self):
-        self.ui = uic.loadUi("inter4.ui")
+        self.ui = uic.loadUi("inter5.ui")
         self.ui.pushButton_2.clicked.connect(self.open_folder)
         self.ui.listWidget.itemDoubleClicked.connect(self.play_song)
         self.ui.show()
