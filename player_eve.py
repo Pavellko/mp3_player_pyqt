@@ -52,6 +52,7 @@ class App(QWidget):
                     if file.endswith('mp3'):
                         self.SongList.append(os.path.join(dirpath, file).replace('\\','/'))
                         self.ui.listWidget.addItem(os.path.join(dirpath, file).replace('\\','/'))
+        self.ui.listWidget.setCurrentRow(0)
         self.paused = True    
                         
     def play_duble(self):
@@ -109,6 +110,7 @@ class App(QWidget):
             
     def MusicStop(self):
         self.player.stop()
+        self.ui.listWidget.setCurrentRow(0)
         
             
 if __name__=='__main__':
