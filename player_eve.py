@@ -16,12 +16,10 @@ class App(QWidget):
         super(App, self).__init__()
         # self.ui.label.setStyleSheet("background-image: url(fon.png);")
         # self.ui.pushButton.setStyleSheet(design.knopka)
-        self.paused = True
+        self.paused, self.mp3_url = True, ''
         self.SongList = []
         self.player   = QMediaPlayer()
-        self.mp3_url = ''
-        self.player.setMedia(QMediaContent(QUrl(self.mp3_url)))   
-        
+        self.player.setMedia(QMediaContent(QUrl(self.mp3_url)))           
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.PlayMode)
         self.timer.start(1000)
