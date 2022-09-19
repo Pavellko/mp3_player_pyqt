@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/fon/fon.png);</string>
+    <string notr="true">background-image: url(fon.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -57,7 +57,7 @@ border-color: rgb(85, 0, 255);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#pushButton{
-background-image: url(:/fon/knopka.png);
+background-image: url(knopka.png);
 font: 75 14pt &quot;Arial&quot;;
 color: rgb(255, 255, 206);
 border: none;
