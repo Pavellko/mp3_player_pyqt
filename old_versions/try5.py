@@ -124,6 +124,7 @@ class MyMusicApp(QWidget):
                 self.SongList.append(Song)
                 self.lw.addItem(Song[0])
         self.lw.setCurrentRow(0)
+        print(self.SongList)
         if not self.SongList:                 
             self.mp3_url = self.SongList[self.lw.currentRow()][1]
 
@@ -133,6 +134,7 @@ class MyMusicApp(QWidget):
         self.qsl.setValue(0)
         self.Preview_Next = True
         self.mp3_url      = self.SongList[self.lw.currentRow()][1]
+        print(self.mp3_url)
         self.player.setMedia(QMediaContent(QUrl(self.mp3_url)))
         self.MusicPlay()
         self.Preview_Next = False
